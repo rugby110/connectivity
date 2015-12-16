@@ -12,10 +12,12 @@ Three steps to run the script:
 
  1. open terminal
  2. for OSX
+ 
     `curl https://raw.githubusercontent.com/soundcloud/connectivity/master/connectivity.rb | ruby`
     
     Linux
-    `ruby <(wget -qO- https://raw.githubusercontent.com/soundcloud/connectivity/master/connectivity.rb)`
+ 
+   `ruby <(wget -qO- https://raw.githubusercontent.com/soundcloud/connectivity/master/connectivity.rb)`
     
     --> "run, connectivity suite, run"
 
@@ -24,8 +26,11 @@ Get the code and run the full test suite as follows:
 
  `git clone git@github.com:soundcloud/connectivity.git`
  
+
  `bundle install`
+
  `bundle exec rspec`
+
  `ruby connectivity.rb`
 
 It is built for Ruby >= 1.8.7. for Mac OS X and Linux.
