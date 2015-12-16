@@ -1,0 +1,9 @@
+PING cs55.wpc.edgecastcdn.net (93.184.221.77): 56 data bytes
+64 bytes from 93.184.221.77: icmp_seq=0 ttl=55 time=38.795 ms
+64 bytes from 93.184.221.77: icmp_seq=1 ttl=55 time=30.923 ms
+64 bytes from 93.184.221.77: icmp_seq=2 ttl=55 time=32.044 ms
+64 bytes from 93.184.221.77: icmp_seq=3 ttl=55 time=31.175 ms
+
+--- cs55.wpc.edgecastcdn.net ping statistics ---
+5 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 30.923/33.234/38.795/3.237 ms

@@ -1,0 +1,9 @@
+PING d3mym4xnhdwip8.cloudfront.net (54.182.0.175): 56 data bytes
+64 bytes from 54.182.0.175: icmp_seq=0 ttl=54 time=221.324 ms
+64 bytes from 54.182.0.175: icmp_seq=1 ttl=54 time=332.676 ms
+64 bytes from 54.182.0.175: icmp_seq=2 ttl=54 time=220.919 ms
+64 bytes from 54.182.0.175: icmp_seq=3 ttl=54 time=269.361 ms
+
+--- d3mym4xnhdwip8.cloudfront.net ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 220.919/261.070/332.676/45.793 ms

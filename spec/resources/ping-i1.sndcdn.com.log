@@ -1,0 +1,9 @@
+PING d5i8tm59lw6in.cloudfront.net (54.182.4.215): 56 data bytes
+64 bytes from 54.182.4.215: icmp_seq=0 ttl=54 time=219.459 ms
+64 bytes from 54.182.4.215: icmp_seq=1 ttl=54 time=219.782 ms
+64 bytes from 54.182.4.215: icmp_seq=2 ttl=54 time=252.335 ms
+64 bytes from 54.182.4.215: icmp_seq=3 ttl=54 time=274.983 ms
+
+--- d5i8tm59lw6in.cloudfront.net ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 219.459/241.640/274.983/23.430 ms

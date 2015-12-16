@@ -1,0 +1,14 @@
+ 1  11.12.10.2 (11.12.10.2)  1.736 ms  1.494 ms  1.370 ms
+ 2  fw1.aus.powers.droppin.net (10.10.0.2)  1.191 ms  1.227 ms  1.184 ms
+ 3  40.82.202.193 (80.88.202.193)  1.499 ms  1.483 ms  1.409 ms
+ 4  rb-n15-09-94-198-57-130.unbelievable-machine.net (88.198.88.130)  1.324 ms  1.585 ms  12.898 ms
+ 5  bei-b1-link.telia.net (40.115.88.241)  1.710 ms  2.021 ms  1.723 ms
+ 6  hbg-bb1-link.telia.net (40.91.254.206)  69.143 ms
+    hbg-bb1-link.telia.net (42.115.142.182)  8.907 ms
+    hbg-bb1-link.telia.net (40.90.254.206)  67.754 ms
+ 7  adm-bb3-link.telia.net (40.88.253.47)  14.687 ms
+    adm-bb3-link.telia.net (413.155.130.228)  14.853 ms
+    adm-bb3-link.telia.net (40.88.249.76)  14.712 ms
+ 8  adm-b2-link.telia.net (42.115.141.5)  15.519 ms
+    adm-b2-link.telia.net (42.115.141.67)  15.471 ms  15.484 ms
+ 9  a100row-ic-152598-adm-b7.c.telia.net (883.248.7883.188)  15.580 ms  15.503 ms  17.766 ms

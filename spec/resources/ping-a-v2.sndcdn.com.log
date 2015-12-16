@@ -1,0 +1,9 @@
+PING cs70.wac.edgecastcdn.net (93.184.220.96): 56 data bytes
+64 bytes from 93.184.220.96: icmp_seq=0 ttl=56 time=19.606 ms
+64 bytes from 93.184.220.96: icmp_seq=1 ttl=56 time=19.753 ms
+64 bytes from 93.184.220.96: icmp_seq=2 ttl=56 time=23.820 ms
+64 bytes from 93.184.220.96: icmp_seq=3 ttl=56 time=19.573 ms
+
+--- cs70.wac.edgecastcdn.net ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 19.573/20.688/23.820/1.810 ms

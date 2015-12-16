@@ -1,0 +1,10 @@
+PING 93.184.220.127 (93.184.220.127): 56 data bytes
+64 bytes from 93.184.220.127: icmp_seq=0 ttl=56 time=19.184 ms
+64 bytes from 93.184.220.127: icmp_seq=1 ttl=56 time=23.010 ms
+64 bytes from 93.184.220.127: icmp_seq=2 ttl=56 time=18.881 ms
+64 bytes from 93.184.220.127: icmp_seq=3 ttl=56 time=18.962 ms
+64 bytes from 93.184.220.127: icmp_seq=4 ttl=56 time=19.512 ms
+
+--- 93.184.220.127 ping statistics ---
+5 packets transmitted, 5 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 18.881/19.910/23.010/1.565 ms

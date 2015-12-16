@@ -1,0 +1,9 @@
+PING dq19j1toufa91.cloudfront.net (54.182.5.22): 56 data bytes
+64 bytes from 54.182.5.22: icmp_seq=0 ttl=54 time=219.136 ms
+64 bytes from 54.182.5.22: icmp_seq=1 ttl=54 time=219.630 ms
+64 bytes from 54.182.5.22: icmp_seq=2 ttl=54 time=220.644 ms
+64 bytes from 54.182.5.22: icmp_seq=3 ttl=54 time=219.833 ms
+
+--- dq19j1toufa91.cloudfront.net ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 219.136/219.811/220.644/0.544 ms

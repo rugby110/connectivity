@@ -1,0 +1,9 @@
+PING 216.137.33.174 (216.137.33.174): 56 data bytes
+64 bytes from 216.137.33.174: icmp_seq=0 ttl=52 time=102.123 ms
+64 bytes from 216.137.33.174: icmp_seq=1 ttl=52 time=110.193 ms
+64 bytes from 216.137.33.174: icmp_seq=2 ttl=52 time=102.259 ms
+64 bytes from 216.137.33.174: icmp_seq=3 ttl=52 time=101.897 ms
+
+--- 216.137.33.174 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 101.897/104.118/110.193/3.510 ms
