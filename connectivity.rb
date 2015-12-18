@@ -126,25 +126,6 @@ module ConnectivitySuite
         end
       end
 
-      def whois
-        time = Time.now
-        if (`which whois > /dev/null; echo $?`).to_i.zero?
-          begin
-            if (`whois #{ip}; echo $?`).to_i.zero?
-              who = (`whois #{ip}`)
-              @logger.debug("Obtain NICs databases records for hostname '#{@host}' - #{'%.5f' % (Time.now - time)} sec")
-              who
-            end
-          rescue NoIPError => e
-            @logger.warn("Skipped whois request for '#{@host}': #{e.message}")
-            raise e
-          end
-        else
-          puts 'if you run this script on linux please install whois on your machine'
-          nil
-        end
-      end
-
       def get(url)
         if (`which curl > /dev/null; echo $?`).to_i.zero?
             `curl -m 10 '#{url}' 2> /dev/null`
@@ -156,6 +137,7 @@ module ConnectivitySuite
       def edgecast?
         begin
           time = Time.now
+          p "HUHU #{ip}"
           output = get("https://wq.apnic.net/whois-search/query?searchtext=#{ip}").include?("EDGECAST")
           result = output ? true : false
           @logger.info("CDN Edgecast for '#{@host}' => #{result} - #{'%.5f' % (Time.now - time)} sec")
@@ -287,20 +269,19 @@ module ConnectivitySuite
       logger = Logger.new(log_file)
       logger.level = Logger::DEBUG
       logger.info("CONNECTIVITY SUITE - START #{Time.now}")
-
+      io.puts "this script will check the connectivity to various soundcloud domains"
       logger.info(' ')
       logger.info('START HOST CHECKER')
       hash_dns_ip = {}
 
       data.webhosts.each do |line|
         single_dns_ip = {}
-        io.print "checking '#{line}'  "
+        io.print "checking '#{line}'"
         checker = Features::HostChecker.new(line, logger)
         @result_ip = checker.valid_ip?
-        io.puts "=>  IP connectivity #{@result_ip} "
-        dns = checker.valid_dns? 
-        @result_dns = dns ? true : false
-        io.print " | DNS resolution #{@result_dns} "
+        io.puts "=> IP connectivity #{@result_ip}"
+        @result_dns = checker.valid_dns? 
+        io.print "| DNS resolution #{@result_dns}"
         io.puts
         routes = checker.traceroute 
         single_dns_ip[line] = { 'ip_value'  =>  @result_ip, 'dns_value'  =>  @result_dns }
@@ -318,12 +299,11 @@ module ConnectivitySuite
           io.print "checking protocol #{protocol_name} '#{host}'  "
           url = "#{protocol_name}://#{host}"
           checker = Features::UrlChecker.new(url, logger)
-          output = checker.valid? 
-          @protocol_result = output ? true : false
-          io.print "=> #{@protocol_result} "
+          @protocol_result = checker.valid? 
+          io.print "=>#{@protocol_result} "
           io.puts
           logger.info("Checking protocol #{protocol_name} '#{host}' => #{@protocol_result} ")
-          hash_url[protocol_name] = { url => output }
+          hash_url[protocol_name] = { url => @protocol_result }
         end
       end
       logger.info("RESULT URL CHECKER: #{hash_url.inspect}")
@@ -339,7 +319,7 @@ module ConnectivitySuite
           url = "#{protocol_name}://#{host}"
           io.print "checking latency for #{url} "
           @latency_result = latency.valid? 
-          io.print " => #{@latency_result}"
+          io.print " =>#{@latency_result}"
           io.puts
           single_latency[protocol_name] = { url => @latency_result }
           hash_latency[protocol_name] = { url => @latency_result }
@@ -349,16 +329,21 @@ module ConnectivitySuite
       logger.info('END LATENCY CHECKER')
       logger.info(' ')
 
+      if @result_ip && @result_dns && @protocol_result && @latency_result
+        puts "hoi #{@result_ip}  #{@result_dns}  #{@protocol_result}  #{@latency_result}" 
+        puts "all tests where successful"
+      else 
+        puts "some tests failed. Please write a mail to support@soundcloud.com and attach the log file located at ~/Desktop/SoundCloud_20151217_15/58/03.log"
+      end
+
       duration = Time.now - time
       logger.info("CONNECTIVITY SUITE - END #{Time.now} Duartion: #{duration.inspect} sec")
     end
   end
-
   if __FILE__ == $PROGRAM_NAME
-    if ARGV.empty?
+   if ARGV.empty?
       ConnectivitySuite::Runner.run!
-    else ARGV == 'Happy'
-         puts 'Hakkunamattata'
-    end
+   end
   end
 end
+
