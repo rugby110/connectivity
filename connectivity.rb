@@ -16,19 +16,19 @@ module ConnectivitySuite
     end
 
     HOSTS = {
-      'soundcloud.com' => '/robots.txt',
-      'api-v2.soundcloud.com' => '/robots.txt',
-      'ec-media.sndcdn.com' => '/crossdomain.xml',
-      'a-v2.sndcdn.com' => '/robots.txt',
-      'api.soundcloud.com' => '/robots.txt',
-      'cf-media.sndcdn.com' => '/robots.txt',
-      'eventgateway.soundcloud.com' => '/robots.txt',
-      'i1.sndcdn.com' => '/robots.txt',
-      'i2.sndcdn.com' => '/robots.txt',
-      'i3.sndcdn.com' => '/robots.txt',
-      'i4.sndcdn.com' => '/robots.txt',
-      'promoted.soundcloud.com' => '/robots.txt',
-      'va.sndcdn.com' => '/robots.txt',
+      # 'soundcloud.com' => '/robots.txt',
+      # 'api-v2.soundcloud.com' => '/robots.txt',
+      # 'ec-media.sndcdn.com' => '/crossdomain.xml',
+      # 'a-v2.sndcdn.com' => '/robots.txt',
+      # 'api.soundcloud.com' => '/robots.txt',
+      # 'cf-media.sndcdn.com' => '/robots.txt',
+      # 'eventgateway.soundcloud.com' => '/robots.txt',
+      # 'i1.sndcdn.com' => '/robots.txt',
+      # 'i2.sndcdn.com' => '/robots.txt',
+      # 'i3.sndcdn.com' => '/robots.txt',
+      # 'i4.sndcdn.com' => '/robots.txt',
+      # 'promoted.soundcloud.com' => '/robots.txt',
+      # 'va.sndcdn.com' => '/robots.txt',
       'wis.sndcdn.com' => '/robots.txt'
     }
 
@@ -268,7 +268,7 @@ module ConnectivitySuite
         ENV['HOME']
       end
 
-      log_file = File.open("#{log_path}/SoundCloud-#{Time.now.strftime("%Y%m%d-%H:%M:%S")}.log", 'w')
+      log_file = File.open("#{log_path}/SoundCloud-#{Time.now.strftime("%Y%m%d-%H-%M-%S")}.log", 'w')
       logger = Logger.new(log_file)
       logger.level = Logger::DEBUG
       logger.info("CONNECTIVITY SUITE - START #{Time.now}")
