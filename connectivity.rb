@@ -137,7 +137,6 @@ module ConnectivitySuite
       def edgecast?
         begin
           time = Time.now
-          p "HUHU #{ip}"
           output = get("https://wq.apnic.net/whois-search/query?searchtext=#{ip}").include?("EDGECAST")
           result = output ? true : false
           @logger.info("CDN Edgecast for '#{@host}' => #{result} - #{'%.5f' % (Time.now - time)} sec")
@@ -256,6 +255,10 @@ module ConnectivitySuite
   end
 
   class Runner
+    def self.check_true_values(hash)
+      hash.values.all? {|checks_for_domain| checks_for_domain.values.all? { |value| value == true}}
+    end
+
     def self.run!(data = Data, io = $stdout)
       time = Time.now
 
@@ -265,11 +268,12 @@ module ConnectivitySuite
         ENV['HOME']
       end
 
-      log_file = File.open("#{log_path}/SoundCloud_#{Time.now.strftime("%Y%m%d_%H:%M:%S")}.log", 'w')
+      log_file = File.open("#{log_path}/SoundCloud-#{Time.now.strftime("%Y%m%d-%H:%M:%S")}.log", 'w')
       logger = Logger.new(log_file)
       logger.level = Logger::DEBUG
       logger.info("CONNECTIVITY SUITE - START #{Time.now}")
-      io.puts "this script will check the connectivity to various soundcloud domains"
+      io.puts "this script will check connectivity layers to various soundcloud domains.
+      If the validation fails, please send an e-mail with the attached logs to support@soundcloud.com"
       logger.info(' ')
       logger.info('START HOST CHECKER')
       hash_dns_ip = {}
@@ -278,15 +282,15 @@ module ConnectivitySuite
         single_dns_ip = {}
         io.print "checking '#{line}'"
         checker = Features::HostChecker.new(line, logger)
-        @result_ip = checker.valid_ip?
-        io.puts "=> IP connectivity #{@result_ip}"
-        @result_dns = checker.valid_dns? 
-        io.print "| DNS resolution #{@result_dns}"
+        result_ip = checker.valid_ip?
+        io.print " => IP connectivity #{result_ip} "
+        result_dns = checker.valid_dns? 
+        io.print "| DNS resolution #{result_dns}"
         io.puts
         routes = checker.traceroute 
-        single_dns_ip[line] = { 'ip_value'  =>  @result_ip, 'dns_value'  =>  @result_dns }
+        single_dns_ip[line] = { 'ip_value'  =>  result_ip, 'dns_value'  =>  result_dns }
         logger.info(single_dns_ip.inspect)
-        hash_dns_ip[line] = { 'ip_value'  =>  @result_ip, 'dns_value'  =>  @result_dns}
+        hash_dns_ip[line] = { 'ip_value'  =>  result_ip, 'dns_value'  =>  result_dns}
       end
       logger.info("RESULT HOST CHECKER: #{hash_dns_ip.inspect}")
       logger.info('END HOST CHECKER')
@@ -299,11 +303,12 @@ module ConnectivitySuite
           io.print "checking protocol #{protocol_name} '#{host}'  "
           url = "#{protocol_name}://#{host}"
           checker = Features::UrlChecker.new(url, logger)
-          @protocol_result = checker.valid? 
-          io.print "=>#{@protocol_result} "
+          protocol_result = checker.valid? 
+          io.print "=>#{protocol_result} "
           io.puts
           logger.info("Checking protocol #{protocol_name} '#{host}' => #{@protocol_result} ")
-          hash_url[protocol_name] = { url => @protocol_result }
+          hash_url[protocol_name] ||= {}
+          hash_url[protocol_name][url] = protocol_result
         end
       end
       logger.info("RESULT URL CHECKER: #{hash_url.inspect}")
@@ -315,27 +320,24 @@ module ConnectivitySuite
       %w(http https).each do |protocol_name|
         data.domain_path.each do |host|
           latency = Features::LatencyChecker.new(host, logger)
-          single_latency = {}
           url = "#{protocol_name}://#{host}"
           io.print "checking latency for #{url} "
-          @latency_result = latency.valid? 
-          io.print " =>#{@latency_result}"
+          latency_result = latency.valid? 
+          io.print " =>#{latency_result}"
           io.puts
-          single_latency[protocol_name] = { url => @latency_result }
-          hash_latency[protocol_name] = { url => @latency_result }
+          hash_latency[protocol_name] ||= {}
+          hash_latency[protocol_name][url] = latency_result
         end
       end
       logger.info("RESULT LATENCY CHECKER: #{hash_latency.inspect}")
       logger.info('END LATENCY CHECKER')
       logger.info(' ')
 
-      if @result_ip && @result_dns && @protocol_result && @latency_result
-        puts "hoi #{@result_ip}  #{@result_dns}  #{@protocol_result}  #{@latency_result}" 
-        puts "all tests where successful"
+      if check_true_values(hash_latency) && check_true_values(hash_url) && check_true_values(hash_dns_ip)
+        puts "All tests where successful!"
       else 
-        puts "some tests failed. Please write a mail to support@soundcloud.com and attach the log file located at ~/Desktop/SoundCloud_20151217_15/58/03.log"
+        puts "Some tests failed. Please write a mail to support@soundcloud.com and attach the log file located at ~/Desktop/SoundCloud_20151217_15/58/03.log"
       end
-
       duration = Time.now - time
       logger.info("CONNECTIVITY SUITE - END #{Time.now} Duartion: #{duration.inspect} sec")
     end
