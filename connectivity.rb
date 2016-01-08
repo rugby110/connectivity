@@ -16,9 +16,9 @@ module ConnectivitySuite
     end
 
     HOSTS = {
-      # 'soundcloud.com' => '/robots.txt',
-      # 'api-v2.soundcloud.com' => '/robots.txt',
-      # 'ec-media.sndcdn.com' => '/crossdomain.xml',
+       'soundcloud.com' => '/robots.txt',
+       'api-v2.soundcloud.com' => '/robots.txt',
+       'ec-media.sndcdn.com' => '/crossdomain.xml',
       # 'a-v2.sndcdn.com' => '/robots.txt',
       # 'api.soundcloud.com' => '/robots.txt',
       # 'cf-media.sndcdn.com' => '/robots.txt',
@@ -29,7 +29,7 @@ module ConnectivitySuite
       # 'i4.sndcdn.com' => '/robots.txt',
       # 'promoted.soundcloud.com' => '/robots.txt',
       # 'va.sndcdn.com' => '/robots.txt',
-      'wis.sndcdn.com' => '/robots.txt'
+      #'wis.sndcdn.com' => '/robots.txt'
     }
 
     INPUT = "\n
