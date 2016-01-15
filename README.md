@@ -1,6 +1,7 @@
 #ConnectivitySuite#
 
 [Build Status](http://jenkins.int.s-cloud.net/job/Connectivity%20Suite%20for%20SoundClouds%20Community)
+[Video Description](https://vimeo.com/151906518)
 
 ## Introduction
 With the Connectivity Suite we provide a script that can be executed on the users machine which tests if everything is working properly to load the soundcloud.com website and play tracks.
